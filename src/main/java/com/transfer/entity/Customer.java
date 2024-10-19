@@ -45,7 +45,7 @@ public class Customer {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    @OneToOne(mappedBy = "customer")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "customer")
     private Account account;
 
 
