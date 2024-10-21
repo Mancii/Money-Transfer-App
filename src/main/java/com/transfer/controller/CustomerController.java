@@ -1,6 +1,7 @@
 package com.transfer.controller;
 
 
+import com.transfer.constants.BusinessConstants;
 import com.transfer.dto.ChangePasswordDTO;
 import com.transfer.dto.CustomerDTO;
 import com.transfer.dto.UpdateCustomerDTO;
@@ -29,16 +30,16 @@ public class CustomerController {
     private final ICustomerService customerService;
 
     @Operation(summary = "Get customer by id")
-    @ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = CustomerDTO.class), mediaType = "application/json")})
-    @ApiResponse(responseCode = "400", content = {@Content(schema = @Schema(implementation = ErrorDetails.class), mediaType = "application/json")})
+    @ApiResponse(responseCode = BusinessConstants.RESPONSE_CODE_200, content = {@Content(schema = @Schema(implementation = CustomerDTO.class), mediaType = BusinessConstants.APPLICATION_JSON)})
+    @ApiResponse(responseCode = BusinessConstants.RESPONSE_CODE_400, content = {@Content(schema = @Schema(implementation = ErrorDetails.class), mediaType = BusinessConstants.APPLICATION_JSON)})
     @GetMapping("/{customerId}")
     public CustomerDTO getCustomerById(@PathVariable Long customerId) throws ResourceNotFoundException {
         return this.customerService.getCustomerById(customerId);
     }
 
     @Operation(summary = "Update customer profile")
-    @ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = CustomerDTO.class), mediaType = "application/json")})
-    @ApiResponse(responseCode = "400", content = {@Content(schema = @Schema(implementation = ErrorDetails.class), mediaType = "application/json")})
+    @ApiResponse(responseCode = BusinessConstants.RESPONSE_CODE_200, content = {@Content(schema = @Schema(implementation = CustomerDTO.class), mediaType = BusinessConstants.APPLICATION_JSON)})
+    @ApiResponse(responseCode = BusinessConstants.RESPONSE_CODE_400, content = {@Content(schema = @Schema(implementation = ErrorDetails.class), mediaType = BusinessConstants.APPLICATION_JSON)})
     @PutMapping("update/{customerId}")
     public CustomerDTO updateCustomerProfile(
             @PathVariable Long customerId,
@@ -46,8 +47,8 @@ public class CustomerController {
         return this.customerService.updateCustomerProfile(customerId, updateCustomerDTO);
     }
     @Operation(summary = "Change customer password")
-    @ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = Void.class), mediaType = "application/json")})
-    @ApiResponse(responseCode = "400", content = {@Content(schema = @Schema(implementation = ErrorDetails.class), mediaType = "application/json")})
+    @ApiResponse(responseCode = BusinessConstants.RESPONSE_CODE_200, content = {@Content(schema = @Schema(), mediaType = BusinessConstants.APPLICATION_JSON)})
+    @ApiResponse(responseCode = BusinessConstants.RESPONSE_CODE_400, content = {@Content(schema = @Schema(implementation = ErrorDetails.class), mediaType = BusinessConstants.APPLICATION_JSON)})
     @PutMapping("/{customerId}/change-password")
     public void changePassword(
             @PathVariable Long customerId,
